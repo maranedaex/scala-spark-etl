@@ -5,6 +5,10 @@
 
 Solo deberian necesitar descargar el proyecto, abrir terminal y ejecutar npm start para iniciar la aplicacion
 
+### Comandos npm
+- npm install
+- npm start
+
 ### datos de desarrollo Jose Campos 
 
 - version npm 7.10.0
