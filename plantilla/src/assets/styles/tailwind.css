@@ -2915,6 +2915,10 @@ select {
     margin-left: auto;
   }
 
+  .lg\:ml-8rem{
+    margin-left: 8rem;
+  }
+
   .lg\:-ml-16 {
     margin-left: -4rem;
   }
