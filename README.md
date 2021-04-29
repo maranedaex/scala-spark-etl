@@ -21,5 +21,5 @@ Solo deberian necesitar descargar el proyecto, abrir terminal y ejecutar npm sta
 - git commit -a -m '{mensaje}': hacer una confirmacion de los cambios con un mensaje 
 - git checkout devel: cambiarse a la rama "devel"
 - git merge --no-ff feature-namechange: une los cambios de la rama "feature-namechange" con la actual
-- git pull origin master: obtiene los cambios del repositorio de la rama master
-- git push -u origin master: sube los cambios al repositorio
+- git pull origin devel: obtiene los cambios del repositorio de la rama master
+- git push -u origin devel: sube los cambios al repositorio
