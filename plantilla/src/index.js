@@ -19,12 +19,15 @@ import FAQ from "views/FAQ.js";
 import Nosotros from "views/Nosotros.js";
 import Index from "views/Index.js";
 
+import Listado from "views/propuestas/Listado.js"
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       {/* add routes with layouts */}
       <Route path="/admin" component={Admin} />
       <Route path="/auth" component={Auth} />
+
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
@@ -32,6 +35,7 @@ ReactDOM.render(
       <Route path="/FAQ" exact component={FAQ} />
       <Route path="/Nosotros" exact component={Nosotros} />
       <Route path="/" exact component={Index} />
+      <Route path="/Listado" exact component={Listado} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
     </Switch>

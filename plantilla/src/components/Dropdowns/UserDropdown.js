@@ -45,21 +45,21 @@ const UserDropdown = () => {
         }
       >
         <a
-          href="#pablo"
+          href="/Profile"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={(e) => e.preventDefault()}
+          // onClick={(e) => e.preventDefault()}
         >
           Ver Perfil
         </a>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
         <a
-          href="#pablo"
+          href="/auth/login"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
-          onClick={(e) => e.preventDefault()}
+          // onClick={(e) => e.preventDefault()}
         >
           Salir
         </a>

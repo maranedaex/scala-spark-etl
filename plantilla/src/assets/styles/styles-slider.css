@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 
-body {
+/* body {
   font-family: 'Lato', sans-serif;
   box-sizing: border-box;
   padding-top: 75px;
-}
+} */
 
 header {
   position: fixed;
@@ -235,4 +235,4 @@ button:hover {
   .slider-content .inner h1 {
     font-size: 32px;
   }
-}
+} 

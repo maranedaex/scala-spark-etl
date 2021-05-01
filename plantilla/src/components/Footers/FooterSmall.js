@@ -20,11 +20,11 @@ export default function FooterSmall(props) {
                   href="https://www.creative-tim.com?ref=nr-footer-small"
                   className="text-white hover:text-blueGray-300 text-sm font-semibold py-1"
                 >
-                  Creative Tim
+                  USACH
                 </a>
               </div>
             </div>
-            <div className="w-full md:w-8/12 px-4">
+            {/* <div className="w-full md:w-8/12 px-4">
               <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                 <li>
                   <a
@@ -59,7 +59,7 @@ export default function FooterSmall(props) {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>
