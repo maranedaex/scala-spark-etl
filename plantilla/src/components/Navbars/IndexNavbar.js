@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // components
 
 import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
+import PropuestasDropdown from "components/Dropdowns/PropuestasDropdown.js";
 // import AdminDropdown from "components/Dropdowns/AdminDropdown";
 
 export default function Navbar(props) {
@@ -17,7 +18,7 @@ export default function Navbar(props) {
               to="/"
               className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
             >
-              Plataforma Expedita de Titulación
+              Conecta I+D
             </Link>
             <button
               className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
@@ -66,6 +67,10 @@ export default function Navbar(props) {
                 >
                   Nostros
                 </a>
+              </li>
+
+              <li className="flex items-center">
+                <PropuestasDropdown />
               </li>
             </ul>
 
