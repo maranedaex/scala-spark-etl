@@ -44,30 +44,34 @@ export default function Navbar(props) {
                   Inicio
                 </a>
               </li>
+
               <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/Contacto"
+                  href="#quienSomos"
                 >
-                  Contacto
+                  Quienes somos
                 </a>
               </li>
+            
               <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/FAQ"
+                  href="#FAQ"
                 >
                   FAQ
                 </a>
               </li>
+
               <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="/Nosotros"
+                  href="#contactenos"
                 >
-                  Nostros
+                  Contactenos
                 </a>
               </li>
+             
 
               <li className="flex items-center">
                 <PropuestasDropdown />
