@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-import CardTable from "components/Cards/CardTable.js";
+import CardTablePropuestas from "components/Cards/CardTablePropuestas.js";
 
 export default function Listado() {
   return (
@@ -17,7 +17,7 @@ export default function Listado() {
           {/* <div className="flex flex-wrap justify-center bg-white shadow-xl rounded-lg py-16 px-12 relative z-10"> */}
             <div className="w-full text-center">
               
-              <CardTable />
+              <CardTablePropuestas />
 
               <div className="text-center mt-16"></div>
             </div>

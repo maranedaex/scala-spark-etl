@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // components
 
-import CardTablePropuesta from "components/Cards/CardTable.js";
+import CardTablePropuestas from "components/Cards/CardTablePropuestas.js";
 
 export default function Users() {
   return (
@@ -29,7 +29,7 @@ export default function Users() {
               </div>
             </div>
 
-            <CardTablePropuesta />
+            <CardTablePropuestas />
           </div>
           
         </div>
