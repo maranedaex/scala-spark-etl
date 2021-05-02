@@ -16,14 +16,13 @@ export default function Index() {
         <CardSlider />
 
       </section>
-
-
-      <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
+      
+      {/* <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
         <div className="container mx-auto items-center flex flex-wrap">
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
             <div className="pt-32 sm:pt-0">
               <h2 className="font-semibold text-4xl text-blueGray-600">
-                Notus React - A beautiful extension for Tailwind CSS.
+                Conecta I+D
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
                 Notus React is Free and Open Source. It does not change any of
@@ -63,7 +62,7 @@ export default function Index() {
           src={require("assets/img/pattern_react.png").default}
           alt="..."
         />
-      </section>
+      </section> */}
 
       <section className="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
         <div

@@ -13,7 +13,19 @@ const slides = [
         button: "Read More",
         image: "https://i.imgur.com/ZXBtVw7.jpg",
         user: "Luan Gjokaj",
-        userProfile: "https://i.imgur.com/JSW6mEk.png"
+        userProfile: "https://i.imgur.com/JSW6mEk.png",
+        categorias: [
+          { 
+            nombre: "Inteligencia Artificial"
+          }, 
+          {
+            nombre: "Redes y Seguridad"
+          },
+          {
+            nombre: "Diseño de videojuegos"
+          }
+        ]
+
       },
       {
         title: "Tortor Dapibus Commodo Aenean Quam",
@@ -22,7 +34,15 @@ const slides = [
         button: "Discover",
         image: "https://i.imgur.com/DCdBXcq.jpg",
         user: "Erich Behrens",
-        userProfile: "https://i.imgur.com/0Clfnu7.png"
+        userProfile: "https://i.imgur.com/0Clfnu7.png",
+        categorias: [
+          {
+            nombre: "Diseño de videojuegos"
+          },
+          {
+            nombre: "Desarrollo Web"
+          }
+        ]
       },
       {
         title: "Phasellus volutpat metus",
@@ -31,7 +51,21 @@ const slides = [
         button: "Buy now",
         image: "https://i.imgur.com/DvmN8Hx.jpg",
         user: "Bruno Vizovskyy",
-        userProfile: "https://i.imgur.com/4KeKvtH.png"
+        userProfile: "https://i.imgur.com/4KeKvtH.png",
+        categorias: [
+          {
+            nombre: "Diseño de videojuegos"
+          },
+          { 
+            nombre: "Inteligencia Artificial"
+          }, 
+          {
+            nombre: "Redes y Seguridad"
+          },
+          {
+            nombre: "Desarrollo Web"
+          }
+        ]
       }
 ];
  
@@ -49,7 +83,32 @@ export default function CardSlider() {
                         <div className="inner">
                             <h1>{slide.title}</h1>
                             <p>{slide.description}</p>
-                            <button title={slide.button}>Ver detalle</button>
+
+                          
+                            {/* badges */}
+                            {slide.categorias.map((categoria, index) => (
+
+                              
+                              (index % 4 === 0
+                                ? 
+                                
+                                <p>
+                                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-lightBlue-600 bg-lightBlue-200 uppercase last:mr-0 mr-1">
+                                  {categoria.nombre}
+                                </span> 
+                                </p>
+                                
+                                : 
+                                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-lightBlue-600 bg-lightBlue-200 uppercase last:mr-0 mr-1">
+                                  {categoria.nombre}
+                                </span> 
+                                )
+                             
+                            ))}
+
+                            <p>
+                            <button title={slide.button}>Postular</button>
+                            </p>
                         </div>
                         <section>
                             <img src={slide.userProfile} alt={slide.user} />

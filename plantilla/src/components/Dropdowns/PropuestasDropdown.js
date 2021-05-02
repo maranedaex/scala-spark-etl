@@ -53,7 +53,7 @@ const PropuestasDropdown = () => {
           Listado
         </Link>
         <Link
-          to="/admin/users"
+          to="/admin/propuestas/guardar"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
@@ -69,7 +69,7 @@ const PropuestasDropdown = () => {
           Postular
         </Link>
         <Link
-          to="/admin/users"
+          to="/admin/propuestas"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
