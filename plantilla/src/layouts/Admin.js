@@ -20,6 +20,9 @@ import PropuestasGuardar from "views/propuestas/Guardar.js";
 import Categorias from "views/admin/Categorias.js";
 import CategoriasGuardar from "views/categorias/Guardar.js";
 
+import Empresas from "views/admin/Empresas.js";
+import EmpresasGuardar from "views/empresas/Guardar.js";
+
 export default function Admin() {
   return (
     <>
@@ -39,6 +42,10 @@ export default function Admin() {
             
             <Route path="/admin/categorias" exact component={Categorias} />
             <Route path="/admin/categorias/guardar" exact component={CategoriasGuardar} />
+
+            <Route path="/admin/empresas" exact component={Empresas} />
+            <Route path="/admin/empresas/guardar" exact component={EmpresasGuardar} />
+
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />

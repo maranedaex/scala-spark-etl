@@ -27,7 +27,7 @@ const AdminDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        Administración
+        userMail@usach.cl
       </a>
       <div
         ref={popoverDropdownRef}
