@@ -11,12 +11,11 @@ export default function Index() {
     <>
       <IndexNavbar fixed />
 
-      <section>
-        
-        <CardSlider />
 
-      </section>
-        
+      <CardSlider />
+
+
+      
 
       <Footer />
     </>

@@ -48,7 +48,7 @@ export default function Navbar(props) {
               <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="#quienSomos"
+                  href="/Nosotros"
                 >
                   Quienes somos
                 </a>
@@ -57,7 +57,7 @@ export default function Navbar(props) {
               <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="#FAQ"
+                  href="/FAQ"
                 >
                   FAQ
                 </a>
@@ -66,7 +66,7 @@ export default function Navbar(props) {
               <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="#contactenos"
+                  href="/Contacto"
                 >
                   Contactenos
                 </a>

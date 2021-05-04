@@ -13,6 +13,8 @@ import FooterAdmin from "components/Footers/FooterAdmin.js";
 import Dashboard from "views/admin/Dashboard.js";
 import Maps from "views/admin/Maps.js";
 import Users from "views/admin/Users.js";
+import UsersSave from "views/usuarios/Guardar.js"
+
 import Tables from "views/admin/Tables.js";
 import Propuestas from "views/admin/Propuestas.js";
 import PropuestasGuardar from "views/propuestas/Guardar.js";
@@ -40,6 +42,7 @@ export default function Admin() {
             <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/maps" exact component={Maps} />
             <Route path="/admin/users" exact component={Users} />
+            <Route path="/admin/usuarios/guardar" exact component={UsersSave} />
             <Route path="/admin/tables" exact component={Tables} />
             <Route path="/admin/propuestas" exact component={Propuestas} />
             <Route path="/admin/propuestas/guardar" exact component={PropuestasGuardar} />
