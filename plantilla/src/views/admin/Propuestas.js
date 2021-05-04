@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // components
 
-import CardTablePropuestas from "components/Cards/CardTablePropuestas.js";
+import CardTablePropuestas from "components/Cards/CardTableMisPropuestas.js";
 
 export default function Propuestas() {
   return (

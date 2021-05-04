@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 // components
 
-// import TableDropdown from "components/Dropdowns/TableDropdownPropuesta.js";
+import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
 export default function CardTableCategorias({ color }) {
   return (
@@ -40,7 +40,7 @@ export default function CardTableCategorias({ color }) {
                   (color === "light" ? "text-blueGray-700" : "")
                 }
               >
-                Listado de propuestas
+                Listado de mis propuestas
               </h3>
             </div>
           </div>
@@ -111,18 +111,13 @@ export default function CardTableCategorias({ color }) {
                   <i className="fas fa-circle text-orange-500 mr-2"></i> Cerrado
                 </td>
                 
+               
+
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                 
-
-                  <Link
-                  className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  to="/SeleccionarEquipo"
-                >
-                  Postular
-                </Link>
-
-
+                  <TableDropdown />
                 </td>
+
+
               </tr>
               <tr>
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
@@ -146,7 +141,7 @@ export default function CardTableCategorias({ color }) {
                 
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                <button>Postular</button>
+                  <TableDropdown />
                 </td>
               </tr>
               <tr>
@@ -169,7 +164,7 @@ export default function CardTableCategorias({ color }) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                <button>Postular</button>
+                  <TableDropdown />
                 </td>
               </tr>
               <tr>
@@ -192,7 +187,7 @@ export default function CardTableCategorias({ color }) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                <button>Postular</button>
+                  <TableDropdown />
                 </td>
               </tr>
               <tr>
@@ -216,7 +211,7 @@ export default function CardTableCategorias({ color }) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                <button>Postular</button>
+                  <TableDropdown />
                 </td>
               </tr>
             </tbody>

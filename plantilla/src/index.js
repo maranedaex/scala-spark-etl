@@ -20,6 +20,7 @@ import Nosotros from "views/Nosotros.js";
 import Index from "views/Index.js";
 
 import Listado from "views/propuestas/Listado.js"
+import SeleccionarEquipo from "views/propuestas/SelEquipo.js"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -36,6 +37,7 @@ ReactDOM.render(
       <Route path="/Nosotros" exact component={Nosotros} />
       <Route path="/" exact component={Index} />
       <Route path="/Listado" exact component={Listado} />
+      <Route path="/SeleccionarEquipo" exact component={SeleccionarEquipo} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
     </Switch>

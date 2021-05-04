@@ -1,4 +1,6 @@
 import React from "react";
+import { createPopper } from "@popperjs/core";
+import Tooltip from '@material-ui/core/Tooltip';
 
 // components
 
@@ -120,7 +122,7 @@ export default function CardUsers() {
             
               
 
-            <br />
+              <br />
 
            
               <div className="w-full lg:w-6/12 px-4">
@@ -234,6 +236,7 @@ export default function CardUsers() {
           
               </div>
         
+        
 
           </form>
         </div>
@@ -246,8 +249,19 @@ export default function CardUsers() {
               >
                 Guardar
             </button>
+            
+            <Tooltip title="Se muestra solo a las propuestas que ya tienen asignado los investigadores" aria-label="add">
+            <button
+                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="button"
+                tooltips="(cuando tenga investigadores aceptados por el guia)"
+              >
+                Cerrar 
+            </button>
+            </Tooltip>
           </div>
         </div>
+        
       </div>
     </>
   );
