@@ -11,7 +11,7 @@ export default function CardTableCategorias({ color }) {
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-          (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
+          (color === "light" ? "bg-white" : "bg-blueGray-200 text-white")
         }
       >
         {/* Form */}

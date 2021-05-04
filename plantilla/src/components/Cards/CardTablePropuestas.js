@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // components
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+// import TableDropdown from "components/Dropdowns/TableDropdownPropuesta.js";
 
 export default function CardTableCategorias({ color }) {
   return (
@@ -11,11 +11,11 @@ export default function CardTableCategorias({ color }) {
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-          (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
+          (color === "light" ? "bg-white" : "bg-blueGray-200")
         }
       >
         {/* Form */}
-        <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
+        {/* <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
           <div className="relative flex w-full flex-wrap items-stretch">
             <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
               <i className="fas fa-search"></i>
@@ -26,7 +26,7 @@ export default function CardTableCategorias({ color }) {
               className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
             />
           </div>
-        </form>
+        </form> */}
 
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
@@ -34,7 +34,7 @@ export default function CardTableCategorias({ color }) {
               <h3
                 className={
                   "font-semibold text-lg " +
-                  (color === "light" ? "text-blueGray-700" : "text-white")
+                  (color === "light" ? "text-blueGray-700" : "")
                 }
               >
                 Listado de propuestas
@@ -52,7 +52,7 @@ export default function CardTableCategorias({ color }) {
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
                       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                      : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
                   }
                 >
                   Titulo propuesta
@@ -62,7 +62,7 @@ export default function CardTableCategorias({ color }) {
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
                       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                      : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
                   }
                 >
                   Categorias
@@ -72,7 +72,7 @@ export default function CardTableCategorias({ color }) {
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
                       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                      : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
                   }
                 >
                   Estado
@@ -83,7 +83,7 @@ export default function CardTableCategorias({ color }) {
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
                       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                      : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
                   }
                 ></th>
               </tr>
@@ -109,7 +109,7 @@ export default function CardTableCategorias({ color }) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
+                  <button>Postular</button>
                 </td>
               </tr>
               <tr>
@@ -134,7 +134,7 @@ export default function CardTableCategorias({ color }) {
                 
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
+                <button>Postular</button>
                 </td>
               </tr>
               <tr>
@@ -157,7 +157,7 @@ export default function CardTableCategorias({ color }) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
+                <button>Postular</button>
                 </td>
               </tr>
               <tr>
@@ -180,7 +180,7 @@ export default function CardTableCategorias({ color }) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
+                <button>Postular</button>
                 </td>
               </tr>
               <tr>
@@ -204,7 +204,7 @@ export default function CardTableCategorias({ color }) {
                 </td>
                 
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
+                <button>Postular</button>
                 </td>
               </tr>
             </tbody>
