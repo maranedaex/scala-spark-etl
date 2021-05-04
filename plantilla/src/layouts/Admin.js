@@ -23,6 +23,10 @@ import CategoriasGuardar from "views/categorias/Guardar.js";
 import Empresas from "views/admin/Empresas.js";
 import EmpresasGuardar from "views/empresas/Guardar.js";
 
+import Sectores from "views/admin/Sectores.js";
+import SectoresGuardar from "views/sectores/Guardar.js";
+
+
 export default function Admin() {
   return (
     <>
@@ -45,6 +49,9 @@ export default function Admin() {
 
             <Route path="/admin/empresas" exact component={Empresas} />
             <Route path="/admin/empresas/guardar" exact component={EmpresasGuardar} />
+
+            <Route path="/admin/sectores" exact component={Sectores} />
+            <Route path="/admin/sectores/guardar" exact component={SectoresGuardar} />
 
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
