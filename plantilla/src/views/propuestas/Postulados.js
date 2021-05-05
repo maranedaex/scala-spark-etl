@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
-import Tooltip from '@material-ui/core/Tooltip';
+// import Tooltip from '@material-ui/core/Tooltip';
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
@@ -134,7 +134,7 @@ export default function GuardarPropuestas() {
           <div className="text-center flex justify-between">
            
             
-            <Tooltip title="Se muestra solo a las propuestas que ya tienen asignado los investigadores" aria-label="add">
+            {/* <Tooltip title="Se muestra solo a las propuestas que ya tienen asignado los investigadores" aria-label="add"> */}
             <button
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
@@ -142,7 +142,7 @@ export default function GuardarPropuestas() {
               >
                 Cerrar postulación
             </button>
-            </Tooltip>
+            {/* </Tooltip> */}
           </div>
 
                   
