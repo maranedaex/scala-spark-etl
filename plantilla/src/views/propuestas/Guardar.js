@@ -261,13 +261,13 @@ export default function GuardarPropuestas() {
             </button>
             
             {/* <Tooltip title="Se muestra solo a las propuestas que ya tienen asignado los investigadores" aria-label="add"> */}
-            <button
+            {/* <button
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
                 tooltips="(cuando tenga investigadores aceptados por el guia)"
               >
                 Cerrar 
-            </button>
+            </button> */}
             {/* </Tooltip> */}
           </div>
 

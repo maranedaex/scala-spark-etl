@@ -16,7 +16,10 @@ export default function GuardarPropuestas() {
 
       <section className="header relative pt-16 items-center flex h-screen max-h-860-px ">
       <div className="container mx-auto ">
-            <div className="w-full ">
+
+      <div className="flex flex-wrap justify-center bg-white shadow-xl rounded-lg -mt-64 py-16 px-12 relative z-10">
+        
+            <div className="w-full lg:w-6/12 px-4">
               
               <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
                 <div className="rounded-t mb-0 px-6 py-6">
@@ -152,6 +155,7 @@ export default function GuardarPropuestas() {
               </div>
               <div className="text-center mt-16"></div>
             </div>
+        </div>
         </div>
       </section>
 
