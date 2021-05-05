@@ -22,6 +22,11 @@ import Index from "views/Index.js";
 import Listado from "views/propuestas/Listado.js"
 import SeleccionarEquipo from "views/propuestas/SelEquipo.js"
 
+import MisPropuestas from "views/propuestas/MisPropuestas.js"
+import PropuestaGuardar from "views/propuestas/Guardar.js"
+import Postulados from "views/propuestas/Postulados.js"
+import Estadisticas from "views/Estadisticas.js"
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -38,6 +43,10 @@ ReactDOM.render(
       <Route path="/" exact component={Index} />
       <Route path="/Listado" exact component={Listado} />
       <Route path="/SeleccionarEquipo" exact component={SeleccionarEquipo} />
+      <Route path="/MisPropuestas" exact component={MisPropuestas} />
+      <Route path="/propuestas/guardar" exact component={PropuestaGuardar} />
+      <Route path="/Estadisticas" exact component={Estadisticas} />
+      <Route path="/propuestas/postulados" exact component={Postulados} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
     </Switch>

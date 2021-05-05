@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 
 // components
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+// import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import TableDropdown from "components/Dropdowns/TableMisPropuestasDropdown.js";
 
-export default function CardTableCategorias({ color }) {
+export default function CardTableMisPropuestas({ color }) {
   return (
     <>
       <div
@@ -222,10 +223,10 @@ export default function CardTableCategorias({ color }) {
   );
 }
 
-CardTableCategorias.defaultProps = {
+CardTableMisPropuestas.defaultProps = {
   color: "light",
 };
 
-CardTableCategorias.propTypes = {
+CardTableMisPropuestas.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

@@ -7,7 +7,7 @@ import "assets/styles/styles-slider.css";
  
 const slides = [
     {
-        title: "Vulputate Mollis Ultricies Fermentum Parturient",
+        title: "Propuesta 1",
         description:
           "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis.",
         button: "Read More",
@@ -28,7 +28,7 @@ const slides = [
 
       },
       {
-        title: "Tortor Dapibus Commodo Aenean Quam",
+        title: "Propuesta 2", 
         description:
           "Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui.",
         button: "Discover",
@@ -45,7 +45,53 @@ const slides = [
         ]
       },
       {
-        title: "Phasellus volutpat metus",
+        title: "Propuesta 3",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.",
+        button: "Buy now",
+        image: "https://i.imgur.com/DvmN8Hx.jpg",
+        user: "Bruno Vizovskyy",
+        userProfile: "https://i.imgur.com/4KeKvtH.png",
+        categorias: [
+          {
+            nombre: "Diseño de videojuegos"
+          },
+          { 
+            nombre: "Inteligencia Artificial"
+          }, 
+          {
+            nombre: "Redes y Seguridad"
+          },
+          {
+            nombre: "Desarrollo Web"
+          }
+        ]
+      },
+      {
+        title: "Propuesta 4",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.",
+        button: "Buy now",
+        image: "https://i.imgur.com/DvmN8Hx.jpg",
+        user: "Bruno Vizovskyy",
+        userProfile: "https://i.imgur.com/4KeKvtH.png",
+        categorias: [
+          {
+            nombre: "Diseño de videojuegos"
+          },
+          { 
+            nombre: "Inteligencia Artificial"
+          }, 
+          {
+            nombre: "Redes y Seguridad"
+          },
+          {
+            nombre: "Desarrollo Web"
+          }
+        ]
+      },
+      {
+        title: "Propuesta 5",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.",
         button: "Buy now",
@@ -106,9 +152,9 @@ export default function CardSlider() {
                              
                             ))}
 
-                            <p>
+                            {/* <p>
                             <button title={slide.button}>Postular</button>
-                            </p>
+                            </p> */}
                         </div>
                         <section>
                             <img src={slide.userProfile} alt={slide.user} />

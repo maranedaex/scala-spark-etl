@@ -22,7 +22,7 @@ export default function SelEquipo() {
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center flex justify-between">
-                <h6 className="text-xl font-bold">Seleccionar Equipo de trabajo</h6>
+                <h6 className="text-xl font-bold">Seleccionar Equipo de trabajo para la propuesta: Titulo de la Propuesta</h6>
               </div>
 
 
@@ -165,7 +165,7 @@ export default function SelEquipo() {
                 className="font-semibold text-lg text-blueGray-700" 
                 
               >
-                Agregados
+                Asignados
               </h3>
             </div>
           </div>

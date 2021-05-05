@@ -1,15 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
 
-const PropuestasDropdown = () => {
+const NotificationDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start",
+      placement: "left-start",
     });
     setDropdownPopoverShow(true);
   };
@@ -19,7 +18,7 @@ const PropuestasDropdown = () => {
   return (
     <>
       <a
-        className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+        className="text-blueGray-500 py-1 px-3"
         href="#pablo"
         ref={btnDropdownRef}
         onClick={(e) => {
@@ -27,7 +26,7 @@ const PropuestasDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        Propuestas I+D
+        <i className="fas fa-ellipsis-v"></i>
       </a>
       <div
         ref={popoverDropdownRef}
@@ -36,50 +35,37 @@ const PropuestasDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        {/* <span
-          className={
-            "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
-          }
-        >
-          Mantenedores
-        </span>
-         */}
-        <Link
-          to="/Listado"
+        <a
+          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
+          onClick={(e) => e.preventDefault()}
         >
-          Listado
-        </Link>
-        <Link
-          to="/admin/propuestas/guardar"
+          Editar
+        </a>
+        <a
+          href="/propuestas/postulados"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
+         
         >
-          Nueva propuesta
-        </Link>
-        {/* <Link
-          to="/admin/users"
+          Ver Postulados
+        </a>
+
+        <a
+          href="#pablo"
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
+          onClick={(e) => e.preventDefault()}
         >
-          Postular
-        </Link> */}
-        <Link
-          to="/MisPropuestas"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-        >
-          Mis propuestas
-        </Link>
-        
+          Eliminar
+        </a>
       </div>
     </>
   );
 };
 
-export default PropuestasDropdown;
+export default NotificationDropdown;

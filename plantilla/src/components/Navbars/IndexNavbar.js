@@ -74,8 +74,25 @@ export default function Navbar(props) {
              
 
               <li className="flex items-center">
-                <PropuestasDropdown />
+                <a
+                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="/Listado"
+                >
+                  Propuestas I+D
+                </a>
               </li>
+
+              <li className="flex items-center">
+                <a
+                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="/Estadisticas"
+                >
+                  Estadisticas
+                </a>
+              </li>
+              {/* <li className="flex items-center">
+                <PropuestasDropdown />
+              </li> */}
             </ul>
 
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">

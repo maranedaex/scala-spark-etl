@@ -23,6 +23,13 @@ export default function Listado() {
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center flex justify-between">
                 <h6 className="text-xl font-bold">Listado de propuestas</h6>
+
+                <Link
+                  className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  to="/MisPropuestas"
+                >
+                  Mis Propuestas
+                </Link>
               </div>
 
               <form>

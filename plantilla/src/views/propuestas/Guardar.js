@@ -1,20 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
 import Tooltip from '@material-ui/core/Tooltip';
 
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import Footer from "components/Footers/Footer.js";
+
 // components
 
-export default function CardUsers() {
+export default function GuardarPropuestas() {
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-        <div className="rounded-t bg-white mb-0 px-6 py-6">
-          <div className="text-center flex justify-between">
-            <h6 className="text-blueGray-700 text-xl font-bold">Registro de propuestas</h6>
-          </div>
-        </div>
-        <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-          <form>
+      <IndexNavbar fixed />
+
+
+      <section className="header relative pt-16 items-center flex h-screen max-h-860-px ">
+      <div className="container mx-auto ">
+            <div className="w-full ">
+              
+              <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
+                <div className="rounded-t mb-0 px-6 py-6">
+                  <div className="text-center flex justify-between">
+                    <h6 className="text-xl font-bold">Registro de propuestas</h6>
+                  </div>
+
+                  <form>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Informacion de la propuesta
             </h6>
@@ -117,11 +127,7 @@ export default function CardUsers() {
                   
                   </div>
               </div>
-
               
-            
-              
-
               <br />
 
            
@@ -185,19 +191,20 @@ export default function CardUsers() {
                 </div>
               </div>
 
-              <div className="w-full lg:w-4/12 px-4">
+              <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password">
                     Proponente
                   </label>
-                  <select className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                    <option>Seleccione</option>
-                    <option>Usuario 1</option>
-                    <option>Usuario 2</option>
-                    <option>Usuario 3</option>
-                  </select>
+                  
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password">
+                    email_proponente_creador@mail.com
+                  </label>
+
                 </div>
               </div>
 
@@ -235,13 +242,16 @@ export default function CardUsers() {
               
           
               </div>
-        
+
+           
+              
+
+              
+
         
 
           </form>
-        </div>
 
-        <div className="rounded-t bg-white mb-0 px-6 py-6">
           <div className="text-center flex justify-between">
             <button
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -260,9 +270,24 @@ export default function CardUsers() {
             </button>
             </Tooltip>
           </div>
+
+                  
+                </div>
+
+              
+              </div>
+              <div className="text-center mt-16"></div>
+            </div>
         </div>
-        
-      </div>
+      </section>
+
+
+
+
+      
+
+
+      <Footer />
     </>
   );
 }
