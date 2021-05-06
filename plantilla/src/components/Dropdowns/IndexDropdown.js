@@ -52,6 +52,33 @@ const IndexDropdown = () => {
         >
           Usuarios
         </Link>
+
+        <Link
+          to="/admin/categorias"
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          }
+        >
+          Categorias
+        </Link>
+
+        <Link
+          to="/admin/empresas"
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          }
+        >
+          Proponentes
+        </Link>
+
+        <Link
+          to="/admin/centroi+d"
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          }
+        >
+          Centros I+D
+        </Link>
         
       </div>
     </>
