@@ -37,7 +37,7 @@ export default function CardTableProponente({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Listado de proponentes
+                Listado de Centros I+D
               </h3>
             </div>
           </div>

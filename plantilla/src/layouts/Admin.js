@@ -28,6 +28,8 @@ import EmpresasGuardar from "views/empresas/Guardar.js";
 import Sectores from "views/admin/Sectores.js";
 import SectoresGuardar from "views/sectores/Guardar.js";
 
+import Centroid from "views/admin/Centroi+d.js";
+import CentroidGuardar from "views/centroi+d/Guardar.js";
 
 export default function Admin() {
   return (
@@ -55,6 +57,9 @@ export default function Admin() {
 
             <Route path="/admin/sectores" exact component={Sectores} />
             <Route path="/admin/sectores/guardar" exact component={SectoresGuardar} />
+
+            <Route path="/admin/centroi+d" exact component={Centroid} />
+            <Route path="/admin/centroi+d/guardar" exact component={CentroidGuardar} />
 
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
