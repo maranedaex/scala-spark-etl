@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 // components
 
-import CardTablePropuestas from "components/Cards/CardTableMisPropuestas.js";
+// import CardTablePropuestas from "components/Cards/CardTableMisPropuestas.js";
 
 export default function Propuestas() {
   return (

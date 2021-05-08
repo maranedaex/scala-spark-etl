@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { createPopper } from "@popperjs/core";
+// import { createPopper } from "@popperjs/core";
 // import Tooltip from '@material-ui/core/Tooltip';
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";

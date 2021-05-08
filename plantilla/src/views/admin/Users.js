@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 // components
 
-import CardUsers from "components/Cards/CardUsers.js";
-import CardProfile from "components/Cards/CardProfile.js";
+// import CardUsers from "components/Cards/CardUsers.js";
+// import CardProfile from "components/Cards/CardProfile.js";
 import CardUserTable from "components/Cards/CardUsersTable.js";
 
 export default function Users() {
