@@ -23,3 +23,14 @@ Solo deberian necesitar descargar el proyecto, abrir terminal y ejecutar npm sta
 - git merge --no-ff feature-namechange: une los cambios de la rama "feature-namechange" con la actual
 - git pull origin devel: obtiene los cambios del repositorio de la rama master
 - git push -u origin devel: sube los cambios al repositorio
+
+### remove all files from git cache
+git rm -r --cached .
+git add .
+git commit -m ".gitignore is now working"
+
+### IF you have NOT pushed your changes to remote
+git reset HEAD~1
+
+### ELSE you have pushed your changes to remote
+git revert HEAD
