@@ -1,11 +1,13 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
+import 'react-dropzone-uploader/dist/styles.css';
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
 import CardTablePropuestas from "components/Cards/CardTablePropuestas.js";
+import MyUploader from "components/Uploader/MyUploader";
 
 export default function Listado() {
   return (
@@ -40,7 +42,7 @@ export default function Listado() {
             <label
               className="block uppercase text-xs font-bold mb-2"
               htmlFor="">
-              Titulo de la propuesta
+              Nombre de Propuesta
             </label>
             <input
               type="text"
@@ -55,7 +57,7 @@ export default function Listado() {
           <label
             className="block uppercase text-xs font-bold mb-2"
             htmlFor="grid-password">
-            Estado
+            Proponente
           </label>
           <select className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
             <option>Seleccione</option>
@@ -82,6 +84,12 @@ export default function Listado() {
         </div>
       </div>
 
+      <div className="w-full lg:w-4/12 px-4">
+        <div className="relative w-full mb-3">
+
+         <MyUploader />
+        </div>
+       </div> 
     </div>
 
 
