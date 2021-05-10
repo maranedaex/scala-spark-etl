@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Link } from "react-router-dom";
-
+import {Link} from "react-router-dom";
+import Modal from 'react-modal';
 
 // components
-
+import ModalConfirmarPostulacion from "../Modals/ModalConfirmarPostulacion";
 // import TableDropdown from "components/Dropdowns/TableDropdownPropuesta.js";
 
-export default function CardTableCategorias({ color }) {
+export default function CardTableCategorias({color}) {
+  const [modalIsOpen, setIsOpen] = React.useState(false);
   return (
     <>
       <div
@@ -49,51 +50,52 @@ export default function CardTableCategorias({ color }) {
           {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
-              <tr>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
-                  }
-                >
-                  Titulo propuesta
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
-                  }
-                >
-                  Categorias
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
-                  }
-                >
-                  Estado
-                </th>
-                
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
-                  }
-                ></th>
-              </tr>
+            <tr>
+              <th
+                className={
+                  "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                  (color === "light"
+                    ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                    : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
+                }
+              >
+                Titulo propuesta
+              </th>
+              <th
+                className={
+                  "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                  (color === "light"
+                    ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                    : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
+                }
+              >
+                Categorias
+              </th>
+              <th
+                className={
+                  "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                  (color === "light"
+                    ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                    : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
+                }
+              >
+                Estado
+              </th>
+
+              <th
+                className={
+                  "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                  (color === "light"
+                    ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                    : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
+                }
+              ></th>
+            </tr>
             </thead>
             <tbody>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+            <tr>
+              <th
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                   
                   <span
                     className={
@@ -103,18 +105,19 @@ export default function CardTableCategorias({ color }) {
                   >
                     Argon Design System
                   </span>
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              </th>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 REDES Y SEGURIDAD
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> Cerrado
-                </td>
-                
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                 
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <i className="fas fa-circle text-orange-500 mr-2"></i> Cerrado
+              </td>
 
-                  <Link
+              <td
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+
+
+                <Link
                   className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                   to="/SeleccionarEquipo"
                 >
@@ -122,10 +125,11 @@ export default function CardTableCategorias({ color }) {
                 </Link>
 
 
-                </td>
-              </tr>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+              </td>
+            </tr>
+            <tr>
+              <th
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                   
                   <span
                     className={
@@ -135,23 +139,35 @@ export default function CardTableCategorias({ color }) {
                   >
                     Angular Now UI Kit PRO
                   </span>
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              </th>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 REDES Y SEGURIDAD
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-emerald-500 mr-2"></i>{" "}
-                  Abierto
-                </td>
-                
-                
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                <button>Postular</button>
-                </td>
-              </tr>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                  
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <i className="fas fa-circle text-emerald-500 mr-2"></i>{" "}
+                Abierto
+              </td>
+
+
+              <td
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+                <button onClick={(e) => {
+                  console.log("click", modalIsOpen);
+                  setIsOpen(true);
+                  console.log(modalIsOpen)
+                }}>Postular
+                </button>
+                <ModalConfirmarPostulacion
+                  onClose = {() => setIsOpen(false)}
+                  modalIsOpen = {modalIsOpen}
+                  tituloPropuesta = {"<Nombre propuesta>"}>
+                </ModalConfirmarPostulacion>
+              </td>
+            </tr>
+            <tr>
+              <th
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+
                   <span
                     className={
                       "ml-3 font-bold " +
@@ -160,20 +176,22 @@ export default function CardTableCategorias({ color }) {
                   >
                     Black Dashboard Sketch
                   </span>
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              </th>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 INTELIGENCIA ARTIFICIAL
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-red-500 mr-2"></i> Cerrado
-                </td>
-                
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <i className="fas fa-circle text-red-500 mr-2"></i> Cerrado
+              </td>
+
+              <td
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                 <button>Postular</button>
-                </td>
-              </tr>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+              </td>
+            </tr>
+            <tr>
+              <th
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                   
                   <span
                     className={
@@ -183,20 +201,22 @@ export default function CardTableCategorias({ color }) {
                   >
                     React Material Dashboard
                   </span>
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              </th>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 INTELIGENCIA ARTIFICIAL
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-teal-500 mr-2"></i> Abierto
-                </td>
-                
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <i className="fas fa-circle text-teal-500 mr-2"></i> Abierto
+              </td>
+
+              <td
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                 <button>Postular</button>
-                </td>
-              </tr>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+              </td>
+            </tr>
+            <tr>
+              <th
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                   
                   <span
                     className={
@@ -206,19 +226,20 @@ export default function CardTableCategorias({ color }) {
                   >
                     React Material Dashboard
                   </span>
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              </th>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 INTELIGENCIA ARTIFICIAL
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-emerald-500 mr-2"></i>{" "}
-                  Abierto
-                </td>
-                
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+              </td>
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <i className="fas fa-circle text-emerald-500 mr-2"></i>{" "}
+                Abierto
+              </td>
+
+              <td
+                className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                 <button>Postular</button>
-                </td>
-              </tr>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>

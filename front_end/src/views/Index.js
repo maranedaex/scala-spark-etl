@@ -9,15 +9,13 @@ import Footer from "components/Footers/Footer.js";
 export default function Index() {
   return (
     <>
-      <IndexNavbar fixed />
+      <IndexNavbar fixed/>
 
 
-      <CardSlider />
+      <CardSlider/>
 
 
-      
-
-      <Footer />
+      <Footer/>
     </>
   );
 }
