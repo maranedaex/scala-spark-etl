@@ -6,8 +6,7 @@ import 'react-dropzone-uploader/dist/styles.css';
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-import CardTablePropuestas from "components/Cards/CardTablePropuestas.js";
-import MyUploader from "components/Uploader/MyUploader";
+import CardTablePropuestas from "components/Cards/CardTablePropuestas.js"; 
 
 export default function Listado() {
   return (
@@ -17,7 +16,7 @@ export default function Listado() {
 
 
 
-      <section className="header relative pt-16 items-center flex h-screen max-h-860-px ">
+      <section className="header mt-10 relative pt-16 items-center flex h-screen max-h-860-px ">
       <div className="container mx-auto ">
             <div className="w-full text-center ">
               
@@ -84,12 +83,7 @@ export default function Listado() {
         </div>
       </div>
 
-      <div className="w-full lg:w-4/12 px-4">
-        <div className="relative w-full mb-3">
-
-         <MyUploader />
-        </div>
-       </div> 
+   
     </div>
 
 
