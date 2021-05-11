@@ -10,6 +10,9 @@ import CardTablePropuestas from "components/Cards/CardTablePropuestas.js";
 import MyUploader from "components/Uploader/MyUploader";
 
 export default function Listado() {
+
+  
+
   return (
     <>
       <IndexNavbar fixed/>
