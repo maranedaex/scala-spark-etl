@@ -1,14 +1,17 @@
-import React from "react";
-// import { Link } from "react-router-dom";
-// import { createPopper } from "@popperjs/core";
-// import Tooltip from '@material-ui/core/Tooltip';
-
+import React, {Fragment, useEffect, useState} from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
+ 
+
+
+ 
 
 // components
 
-export default function GuardarPropuestas() {
+const GuardarPropuestas = () => {
+ 
+  
+
   return (
     <>
       <IndexNavbar fixed />
@@ -26,7 +29,7 @@ export default function GuardarPropuestas() {
 
                   <form>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              Informacion de la propuesta
+              Información de la propuesta
             </h6>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4">
@@ -34,10 +37,11 @@ export default function GuardarPropuestas() {
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password">
-                    Titulo
+                    Título
                   </label>
                   <input
                     type="text"
+                    name="titulo"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=""/>
                 </div>
@@ -51,24 +55,24 @@ export default function GuardarPropuestas() {
                   <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password">
-                      Categorias
+                      Categorías
                     </label>
 
                     <div className="flex flex-wrap"> 
-
+                    <fieldset>
                       <div className="w-full lg:w-6/12 px-4">
                         <div className="relative w-full mb-3">
                           <label className="inline-flex items-center cursor-pointer">
                             <input
-                              id="customCheckLogin"
-                              type="checkbox"
-                              className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                              name="categoria"
+                              id="categoria"
+                              type="radio"
+                              className="form-radio border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                             />
                             <span className="ml-2 text-sm font-semibold text-blueGray-600">
                               Inteligencia Artificial
                             </span>
-                          </label>
-
+                              </label>
                         </div>
                       </div>
 
@@ -76,34 +80,30 @@ export default function GuardarPropuestas() {
                         <div className="relative w-full mb-3">
                           <label className="inline-flex items-center cursor-pointer">
                             <input
-                              id="customCheckLogin"
-                              type="checkbox"
+                              name="categoria"
+                              id="categoria"
+                              type="radio"
                               className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                             />
                             <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                              Diseño de videojuegos
+                              Diseño de Videojuegos
                             </span>
-                          </label>
-
+                          </label> 
                         </div>
-                      </div>
-
+                      </div> 
                       <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-
-                          
+                        <div className="relative w-full mb-3"> 
                           <label className="inline-flex items-center cursor-pointer">
                             <input
-                              id="customCheckLogin"
-                              type="checkbox"
+                              name="categoria"
+                              id="categoria"
+                              type="radio"
                               className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                             />
                             <span className="ml-2 text-sm font-semibold text-blueGray-600">
                               Desarrollo Web
                             </span>
-                          </label>
-
-
+                          </label> 
                         </div>
                       </div>
 
@@ -111,20 +111,19 @@ export default function GuardarPropuestas() {
                         <div className="relative w-full mb-3">
                           <label className="inline-flex items-center cursor-pointer">
                             <input
-                              id="customCheckLogin"
-                              type="checkbox"
-                              className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                              name="categoria"
+                              id="categoria"
+                              type="radio"
+                              className="form-radio border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                             />
                             <span className="ml-2 text-sm font-semibold text-blueGray-600">
                               Redes y Seguridad
                             </span>
                           </label>
                         </div>
-                      </div>
-                  
-                    
-                    </div>
-                  
+                      </div> 
+                    </fieldset>
+                    </div> 
                   </div>
               </div>
               
@@ -140,6 +139,7 @@ export default function GuardarPropuestas() {
                     Descripcion (Texto)
                   </label>
                   <textarea
+                    name="descripcion"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=""/>
@@ -155,6 +155,7 @@ export default function GuardarPropuestas() {
                     Fecha Inicio
                   </label>
                   <input
+                   name="fechaInicio"
                     type="date"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=""/>
@@ -170,6 +171,7 @@ export default function GuardarPropuestas() {
                     Fecha Termino
                   </label>
                   <input
+                     name="fechaTermino"
                     type="date"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=""/>
@@ -185,6 +187,7 @@ export default function GuardarPropuestas() {
                     Foto
                   </label>
                   <input
+                     name="archivo"
                     type="file"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=""/>
@@ -217,6 +220,7 @@ export default function GuardarPropuestas() {
                     Links de interes Nº
                   </label>
                   <input
+                    name="links"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=""/>
@@ -233,6 +237,7 @@ export default function GuardarPropuestas() {
                     Organización proponente
                   </label>
                   <input
+                    name="organizacion"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue=""/>
@@ -243,17 +248,12 @@ export default function GuardarPropuestas() {
           
               </div>
 
-           
-              
-
-              
-
         
 
           </form>
 
           <div className="text-center flex justify-between">
-            <button
+            <button  
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="button"
               >
@@ -291,3 +291,5 @@ export default function GuardarPropuestas() {
     </>
   );
 }
+
+export default GuardarPropuestas;

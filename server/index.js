@@ -100,6 +100,23 @@ app.get("/investigador_guia/:Id", async(req, res) => {
 
 });
 
+app.post("/propuesta", async(req, res) => {
+
+    try{
+        const { id_proponente, estado, descripcion} = request.body
+
+        pool.query('INSERT INTO propuesta (id_proponente, estado, descripcion) VALUES ($1, $2, $3)', [id_proponente, estado, descripcion], (error, results) => {
+            if (error) {
+            throw error
+            }
+            response.status(201).send(`Propuesta added with ID: ${result.insertId}`)
+        })
+    } catch (err){
+        console.log(err.message);
+    }
+
+});
+
 
 app.listen(port, () => {
     console.log("Servidor iniciado en el puerto 5000")

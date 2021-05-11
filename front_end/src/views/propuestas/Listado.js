@@ -6,8 +6,7 @@ import 'react-dropzone-uploader/dist/styles.css';
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-import CardTablePropuestas from "components/Cards/CardTablePropuestas.js";
-import MyUploader from "components/Uploader/MyUploader";
+import CardTablePropuestas from "components/Cards/CardTablePropuestas.js"; 
 
 export default function Listado() {
 
@@ -88,12 +87,7 @@ export default function Listado() {
                       </div>
                     </div>
 
-                    <div className="w-full lg:w-4/12 px-4">
-                      <div className="relative w-full mb-3">
-
-                        <MyUploader/>
-                      </div>
-                    </div>
+                    
                   </div>
 
 
