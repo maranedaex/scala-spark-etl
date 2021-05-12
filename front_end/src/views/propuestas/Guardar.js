@@ -1,17 +1,23 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment, useState, setState} from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
- 
+import { Component } from "react";
+import { createPropuesta } from '../../actions/createPropuesta';
 
 
- 
 
 // components
 
-const GuardarPropuestas = () => {
- 
-  
+class GuardarPropuestas extends Component {
 
+
+
+  handleSubmit(data) {
+     createPropuesta(data);
+   }
+
+
+  render(){ 
   return (
     <>
       <IndexNavbar fixed />
@@ -24,10 +30,10 @@ const GuardarPropuestas = () => {
               <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
                 <div className="rounded-t mb-0 px-6 py-6">
                   <div className="text-center flex justify-between">
-                    <h6 className="text-xl font-bold">Registro de propuestas</h6>
+                    <h6 className="text-xl font-bold">Ingreso de Propuesta Nueva</h6>
                   </div>
 
-                  <form>
+         <form  onSubmit={this.handleSubmit}>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Información de la propuesta
             </h6>
@@ -41,9 +47,8 @@ const GuardarPropuestas = () => {
                   </label>
                   <input
                     type="text"
-                    name="titulo"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""/>
+                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                     />
                 </div>
               </div>
             
@@ -59,70 +64,16 @@ const GuardarPropuestas = () => {
                     </label>
 
                     <div className="flex flex-wrap"> 
-                    <fieldset>
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label className="inline-flex items-center cursor-pointer">
-                            <input
-                              name="categoria"
-                              id="categoria"
-                              type="radio"
-                              className="form-radio border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                            />
-                            <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                              Inteligencia Artificial
-                            </span>
-                              </label>
-                        </div>
-                      </div>
 
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label className="inline-flex items-center cursor-pointer">
-                            <input
-                              name="categoria"
-                              id="categoria"
-                              type="radio"
-                              className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                            />
-                            <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                              Diseño de Videojuegos
-                            </span>
-                          </label> 
-                        </div>
-                      </div> 
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3"> 
-                          <label className="inline-flex items-center cursor-pointer">
-                            <input
-                              name="categoria"
-                              id="categoria"
-                              type="radio"
-                              className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                            />
-                            <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                              Desarrollo Web
-                            </span>
-                          </label> 
-                        </div>
-                      </div>
-
-                      <div className="w-full lg:w-6/12 px-4">
-                        <div className="relative w-full mb-3">
-                          <label className="inline-flex items-center cursor-pointer">
-                            <input
-                              name="categoria"
-                              id="categoria"
-                              type="radio"
-                              className="form-radio border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                            />
-                            <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                              Redes y Seguridad
-                            </span>
-                          </label>
-                        </div>
-                      </div> 
-                    </fieldset>
+                    <select
+                          name="categoria"
+                          onChange={this.handleCategoriaChange}
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                          <option>Inteligencia Artificial</option>
+                          <option>Diseño de Videojuegos</option>
+                          <option>Desarrollo Web</option>
+                          <option>Redes y Seguridad</option>
+                        </select>
                     </div> 
                   </div>
               </div>
@@ -139,44 +90,55 @@ const GuardarPropuestas = () => {
                     Descripcion (Texto)
                   </label>
                   <textarea
+                    onChange={this.handleDescriptionChange}
                     name="descripcion"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""/>
+                     />
                 </div>
               </div>
+
+              <div className="w-full lg:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                  <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password">
+                      Estado
+                    </label>
+
+                    <div className="flex flex-wrap"> 
+
+                    <select
+                          name="estado"
+                          onChange={this.handleEstadoChange} 
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                          <option>Pendiente</option>
+                          <option>Activo</option> 
+                        </select>
+                    </div> 
+                  </div>
+              </div>
+           
+             
 
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
-                    
-                    Fecha Inicio
+                    htmlFor="idproponente">
+                    Proponente
                   </label>
+                  
+               
                   <input
-                   name="fechaInicio"
-                    type="date"
+                    type="text"
+                    onChange={this.handleProponenteChange}
+                    name="idproponente"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""/>
+                     />
                 </div>
               </div>
-           
-              <div className="w-full lg:w-6/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
-                    
-                    Fecha Termino
-                  </label>
-                  <input
-                     name="fechaTermino"
-                    type="date"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""/>
-                </div>
-              </div>
+
 
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
@@ -190,44 +152,10 @@ const GuardarPropuestas = () => {
                      name="archivo"
                     type="file"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""/>
+                    />
                 </div>
               </div>
-
-              <div className="w-full lg:w-6/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
-                    Proponente
-                  </label>
-                  
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
-                    email_proponente_creador@mail.com
-                  </label>
-
-                </div>
-              </div>
-
-              <div className="w-full lg:w-6/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
-                    
-                    Links de interes Nº
-                  </label>
-                  <input
-                    name="links"
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""/>
-                    
-                </div>
-              </div>
-              
+             
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
@@ -237,10 +165,25 @@ const GuardarPropuestas = () => {
                     Organización proponente
                   </label>
                   <input
-                    name="organizacion"
-                    type="text"
+                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""/>
+                    />
+                    
+                </div>
+              </div>
+              
+              <div className="w-full lg:w-6/12 px-4">
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password">
+                    
+                    Links de interes Nº
+                  </label>
+                  <input
+                     type="text"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    />
                     
                 </div>
               </div>
@@ -250,12 +193,12 @@ const GuardarPropuestas = () => {
 
         
 
-          </form>
+      
 
           <div className="text-center flex justify-between">
             <button  
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="button"
+                type="submit"
               >
                 Guardar
             </button>
@@ -270,7 +213,7 @@ const GuardarPropuestas = () => {
             </button> */}
             {/* </Tooltip> */}
           </div>
-
+          </form>
                   
                 </div>
 
@@ -289,7 +232,7 @@ const GuardarPropuestas = () => {
 
       <Footer />
     </>
-  );
+  )};
 }
 
 export default GuardarPropuestas;

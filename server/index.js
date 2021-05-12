@@ -5,27 +5,35 @@ const pool = require("./db.js");
 
 const port = 5000;
 
-// middleware
-app.use(cors());
+// middleware   
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+
 app.use(express.json());
 
  
 
 // Routes
 
-app.post('/propuesta', (request, response, next) => {
-    const { id_proponente, estado, descripcion } = request.body;
-   console.log(id_proponente + " " + estado + " " + descripcion);
-    pool.query(
-     'INSERT INTO propuesta (id_proponente, estado, descripcion) VALUES ($1, $2, $3)',
-     [id_proponente, estado, descripcion],
-     (err, res) => {
-      if (err) return next(err);
-      console.log(JSON.stringify(res.id))
-      response.redirect('/propuestas');
-     }
-    );
-   });
+app.post("/addpropuesta",(request, response, next) => {
+
+     
+        const { idproponente, estado, descripcion, categoria} = request.body
+        console.log(`${idproponente}-${estado}-${descripcion}-${categoria}`);
+
+        pool.query('INSERT INTO propuesta (idproponente, estado, descripcion,categoria) VALUES ($1, $2, $3, $4)', 
+        [idproponente, estado, descripcion, categoria], 
+        (err, res) => {
+            if (err) return next(err);
+            console.log(JSON.stringify(res.id))
+            response.redirect('/propuestas');
+        });
+
+});
+
+
   
 app.get("/propuestas", async(req, res) => {
 
@@ -54,21 +62,6 @@ app.get("/propuesta/:Id", async(req, res) => {
     }
 
 });
-
-app.get("/propuesta/:Id", async(req, res) => {
-
-const createMerchant = (body) => {
-    return new Promise(function(resolve, reject) {
-      const { name, email } = body
-      pool.query('INSERT INTO merchants (name, email) VALUES ($1, $2) RETURNING *', [name, email], (error, results) => {
-        if (error) {
-          reject(error)
-        }
-        resolve(`A new merchant has been added added: ${results.rows[0]}`)
-      })
-    })
-  }
-});  
 
 
 app.get("/investigadores", async(req, res) => {
@@ -100,22 +93,6 @@ app.get("/investigador_guia/:Id", async(req, res) => {
 
 });
 
-app.post("/propuesta", async(req, res) => {
-
-    try{
-        const { id_proponente, estado, descripcion} = request.body
-
-        pool.query('INSERT INTO propuesta (id_proponente, estado, descripcion) VALUES ($1, $2, $3)', [id_proponente, estado, descripcion], (error, results) => {
-            if (error) {
-            throw error
-            }
-            response.status(201).send(`Propuesta added with ID: ${result.insertId}`)
-        })
-    } catch (err){
-        console.log(err.message);
-    }
-
-});
 
 
 app.listen(port, () => {

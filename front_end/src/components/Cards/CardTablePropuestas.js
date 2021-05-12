@@ -19,10 +19,10 @@ export default function CardTableCategorias({color}) {
 
     try {
 
-      const response = await fetch('http://localhost:5000/propuestas');
+      const response = await fetch(base+'/propuestas');
       const jsonData = await response.json();
-      
-       console.log(jsonData);
+      console.log('========>>>>>'); 
+      console.log(jsonData);
       
       setPropuestas(jsonData);
     } catch (err) {
@@ -103,7 +103,7 @@ export default function CardTableCategorias({color}) {
                     : "bg-blueGray-800 text-blueGray-300 border-blueGray-700")
                 }
               >
-                Fecha
+                Categoría
               </th>
               <th
                 className={
@@ -144,11 +144,12 @@ export default function CardTableCategorias({color}) {
                    {propuesta.descripcion}
                   </span>
               </th>
-              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-              {propuesta.fecha_creacion}
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left ">
+                  {propuesta.categoria}
               </td>
-              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                <i className="fas fa-circle text-orange-500 mr-2"></i>  {propuesta.estado}
+              <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left ">
+                <i className="fas fa-circle text-orange-500 mr-2"></i>  
+                  {propuesta.estado}
               </td>
 
               <td
