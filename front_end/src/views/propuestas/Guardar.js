@@ -2,26 +2,102 @@ import React, {Fragment, useState, setState} from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { Component } from "react";
-import { createPropuesta } from '../../actions/createPropuesta';
-
-
-
+ 
 // components
 
 class GuardarPropuestas extends Component {
+  
+  constructor(props) {
+    super(props);
+    // 1: GET SET
+    this.state = {
+      titulo: '',
+      categoria: '',
+      descripcion: '',
+      estado: '',
+      idproponente: '',
+      archivo: null,
+      organizacion:'',
+      base64: '',
+      filename: '',
+      filesize: '',
+      messageerror: ''
+    };
+    // 2: PERMISOS 
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeImage = this.handleChangeImage.bind(this);
+    
+  }
+
+ 
+   handleChange(e) {
+      
+    this.setState({
+      [e.target.id]: e.target.value,
+    })
 
 
+  }
+  // handleCategoriaChange(e){
+  //   this.setState({categoria: e.target.value});
+  // }
+ 
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log('submited!!!!');
+    console.log('a titulo was : ' + this.state.titulo);
+    console.log('a categoria: ' + this.state.categoria);
+    console.log('a descriopcion was : ' + this.state.descripcion);
+    console.log('a estado: ' + this.state.estado);
+    console.log('a id proponenete: ' + this.state.idproponente);
+    console.log('a archivo: ' + this.state.archivo);
+    console.log('a organizacion: ' + this.state.organizacion);
+ 
+  }  
 
-  handleSubmit(data) {
-     createPropuesta(data);
-   }
+  handleChangeImage = e => {
 
+    console.log("Uploading...");
+    var self = this;
+    var reader = new FileReader();
+    var file = e.target.files[0];
+
+    reader.onload = function(upload) {
+        self.setState({
+            archivo: upload.target.result
+        });
+    };
+    reader.onerror = function(e) {
+      console.log(e);
+      self.setState({
+        messageerror: "Intente nuevamente" + reader.error
+      });
+      reader.abort(); 
+      
+    };
+      reader.readAsDataURL(file);
+
+      if(self.state.archivo!==null){
+         console.log(self.state.archivo);
+         self.setState({
+          messageerror: ""
+        });
+
+          console.log("Uploaded");
+      }  else {
+        self.setState({
+          messageerror: "Disculpe!, Intente nuevamente"
+        });
+      }   
+    
+  }
 
   render(){ 
   return (
     <>
       <IndexNavbar fixed />
-
+      <form onSubmit={this.handleSubmit}>
 
       <section className="header relative pt-16 items-center flex h-screen max-h-860-px ">
       <div className="container mx-auto ">
@@ -33,7 +109,7 @@ class GuardarPropuestas extends Component {
                     <h6 className="text-xl font-bold">Ingreso de Propuesta Nueva</h6>
                   </div>
 
-         <form  onSubmit={this.handleSubmit}>
+      
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Información de la propuesta
             </h6>
@@ -42,13 +118,15 @@ class GuardarPropuestas extends Component {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
+                    htmlFor="titulo">
                     Título
                   </label>
-                  <input
+                  <input type="text" id="titulo"  onChange={this.handleChange} />
+                  {/* <input
+                    value={this.state.titulo} onChange={this.handleChange} 
                     type="text"
                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                     />
+                     /> */}
                 </div>
               </div>
             
@@ -59,15 +137,16 @@ class GuardarPropuestas extends Component {
                   <div className="relative w-full mb-3">
                   <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password">
+                      htmlFor="categoria">
                       Categorías
                     </label>
 
                     <div className="flex flex-wrap"> 
 
                     <select
-                          name="categoria"
-                          onChange={this.handleCategoriaChange}
+                          id="categoria"
+                          onChange={this.handleChange}
+                          value={this.state.categoria}
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                           <option>Inteligencia Artificial</option>
                           <option>Diseño de Videojuegos</option>
@@ -85,13 +164,13 @@ class GuardarPropuestas extends Component {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
+                    htmlFor="descripcion">
                     
                     Descripcion (Texto)
                   </label>
                   <textarea
-                    onChange={this.handleDescriptionChange}
-                    name="descripcion"
+                    onChange={this.handleChange} 
+                    id="descripcion"
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                      />
@@ -102,15 +181,15 @@ class GuardarPropuestas extends Component {
                   <div className="relative w-full mb-3">
                   <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password">
+                      htmlFor="estado">
                       Estado
                     </label>
 
                     <div className="flex flex-wrap"> 
 
                     <select
-                          name="estado"
-                          onChange={this.handleEstadoChange} 
+                          onChange={this.handleChange} 
+                          id="estado"
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                           <option>Pendiente</option>
                           <option>Activo</option> 
@@ -132,8 +211,8 @@ class GuardarPropuestas extends Component {
                
                   <input
                     type="text"
-                    onChange={this.handleProponenteChange}
-                    name="idproponente"
+                    onChange={this.handleChange} 
+                    id="idproponente"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                      />
                 </div>
@@ -146,13 +225,26 @@ class GuardarPropuestas extends Component {
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password">
                     
-                    Foto
+                    PDF
                   </label>
-                  <input
-                     name="archivo"
+                  {/* <input
+                     onChange={this.handleChange} 
+                     id="archivo"
                     type="file"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    />
+                    /> */}
+                    <input  type="file" id="archivo" 
+                              className="upload-file"  
+                              onChange={this.handleChangeImage}
+                              encType="multipart/form-data" 
+                              accept="application/pdf"
+                              required/>
+                     <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password">
+                    
+                    {this.state.messageerror} 
+                  </label>     
                 </div>
               </div>
              
@@ -160,11 +252,13 @@ class GuardarPropuestas extends Component {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
+                    htmlFor="organizacion">
                     
                     Organización proponente
                   </label>
                   <input
+                     onChange={this.handleChange} 
+                     id="organizacion"
                      type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     />
@@ -196,12 +290,15 @@ class GuardarPropuestas extends Component {
       
 
           <div className="text-center flex justify-between">
-            <button  
+            {/* <button  
                 className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="submit"
               >
                 Guardar
-            </button>
+            </button> */}
+            
+            <input className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="submit" value="Submit" />
             
             {/* <Tooltip title="Se muestra solo a las propuestas que ya tienen asignado los investigadores" aria-label="add"> */}
             {/* <button
@@ -213,7 +310,7 @@ class GuardarPropuestas extends Component {
             </button> */}
             {/* </Tooltip> */}
           </div>
-          </form>
+         
                   
                 </div>
 
@@ -229,7 +326,7 @@ class GuardarPropuestas extends Component {
 
       
 
-
+      </form>
       <Footer />
     </>
   )};
