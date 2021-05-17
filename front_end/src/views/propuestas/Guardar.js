@@ -2,6 +2,7 @@ import React, {Fragment, useState, setState} from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { Component } from "react";
+import axios from "axios";
  
 // components
 
@@ -15,7 +16,7 @@ class GuardarPropuestas extends Component {
       categoria: '',
       descripcion: '',
       estado: '',
-      idproponente: '',
+      id_proponente: '',
       archivo: null,
       organizacion:'',
       base64: '',
@@ -50,9 +51,33 @@ class GuardarPropuestas extends Component {
     console.log('a categoria: ' + this.state.categoria);
     console.log('a descriopcion was : ' + this.state.descripcion);
     console.log('a estado: ' + this.state.estado);
-    console.log('a id proponenete: ' + this.state.idproponente);
-    console.log('a archivo: ' + this.state.archivo);
+    console.log('a id proponenete: ' + this.state.id_proponente);
+    console.log('a archivo: ' + this.state.image);
     console.log('a organizacion: ' + this.state.organizacion);
+
+    // Armando la Data para Axios
+    var formData = new FormData();
+    
+    //formData.append("id_proponente", 1);
+    formData.append("titulo", this.state.titulo);
+    formData.append("estado", this.state.estado);
+    formData.append("id_proponente", this.state.id_proponente);
+    formData.append("descripcion", this.state.descripcion);
+    formData.append("categoria", this.state.categoria); 
+    formData.append("organizacion", this.state.organizacion);
+    formData.append("image", this.state.archivo);
+
+    axios.post('http://localhost:5000/addpropuesta', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(function (){
+      console.log('SUCCESS!!!!');
+    })
+    .catch(err => {
+      console.error({err});
+    });
  
   }  
 
@@ -85,6 +110,8 @@ class GuardarPropuestas extends Component {
         });
 
           console.log("Uploaded");
+
+
       }  else {
         self.setState({
           messageerror: "Disculpe!, Intente nuevamente"
@@ -204,7 +231,7 @@ class GuardarPropuestas extends Component {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="idproponente">
+                    htmlFor="id_proponente">
                     Proponente
                   </label>
                   
@@ -212,7 +239,7 @@ class GuardarPropuestas extends Component {
                   <input
                     type="text"
                     onChange={this.handleChange} 
-                    id="idproponente"
+                    id="id_proponente"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                      />
                 </div>
