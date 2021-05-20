@@ -2,12 +2,13 @@ import React, {Fragment, useState, setState} from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { Component } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
  
 // components
 
 class GuardarPropuestas extends Component {
-  
+
   constructor(props) {
     super(props);
     // 1: GET SET
@@ -17,7 +18,7 @@ class GuardarPropuestas extends Component {
       descripcion: '',
       estado: '',
       id_proponente: '',
-      archivo: null,
+      image: null,
       organizacion:'',
       base64: '',
       filename: '',
@@ -26,54 +27,48 @@ class GuardarPropuestas extends Component {
     };
     // 2: PERMISOS 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
     this.handleChangeImage = this.handleChangeImage.bind(this);
     
   }
 
  
-   handleChange(e) {
-      
-    this.setState({
-      [e.target.id]: e.target.value,
-    })
-
+   handleChange = (e) =>{
+      this.setState({[e.target.name]:e.target.value}) 
 
   }
-  // handleCategoriaChange(e){
-  //   this.setState({categoria: e.target.value});
-  // }
  
-  handleSubmit = e => {
+  submitHandler = e => {
     e.preventDefault();
+    console.log(this.state);
     console.log('submited!!!!');
-    console.log('a titulo was : ' + this.state.titulo);
-    console.log('a categoria: ' + this.state.categoria);
-    console.log('a descriopcion was : ' + this.state.descripcion);
-    console.log('a estado: ' + this.state.estado);
-    console.log('a id proponenete: ' + this.state.id_proponente);
-    console.log('a archivo: ' + this.state.image);
-    console.log('a organizacion: ' + this.state.organizacion);
 
+    const headers =  {
+      'Content-Type': 'multipart/form-data' 
+    };
+    const propuestas = {
+        id_proponente : this.state.id_proponente,
+        titulo: this.state.titulo,
+        categoria: this.state.categoria,
+        descripcion: this.state.descripcion,
+        estado: this.state.estado,
+        organizacion: this.state.organizacion,
+        image: this.state.image
+
+    };
     // Armando la Data para Axios
-    var formData = new FormData();
-    
-    //formData.append("id_proponente", 1);
+    var formData = new FormData(); 
     formData.append("titulo", this.state.titulo);
     formData.append("estado", this.state.estado);
     formData.append("id_proponente", this.state.id_proponente);
     formData.append("descripcion", this.state.descripcion);
     formData.append("categoria", this.state.categoria); 
     formData.append("organizacion", this.state.organizacion);
-    formData.append("image", this.state.archivo);
+    formData.append("image", this.state.image);
 
-    axios.post('http://localhost:5000/addpropuesta', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-    .then(function (){
-      console.log('SUCCESS!!!!');
+    axios.post('http://localhost:5000/addpropuesta', { propuestas, headers })
+    .then(response =>{
+      console.log(response);
     })
     .catch(err => {
       console.error({err});
@@ -90,7 +85,7 @@ class GuardarPropuestas extends Component {
 
     reader.onload = function(upload) {
         self.setState({
-            archivo: upload.target.result
+            image: upload.target.result
         });
     };
     reader.onerror = function(e) {
@@ -103,8 +98,8 @@ class GuardarPropuestas extends Component {
     };
       reader.readAsDataURL(file);
 
-      if(self.state.archivo!==null){
-         console.log(self.state.archivo);
+      if(self.state.image!==null){
+         console.log(self.state.image);
          self.setState({
           messageerror: ""
         });
@@ -121,12 +116,12 @@ class GuardarPropuestas extends Component {
   }
 
   render(){ 
+    const { titulo, estado, categoria, id_proponente, descripcion, organizacion, image} = this.state
   return (
     <>
       <IndexNavbar fixed />
-      <form onSubmit={this.handleSubmit}>
-
-      <section className="header relative pt-16 items-center flex h-screen max-h-860-px ">
+      <form onSubmit={this.submitHandler}>
+     <section className="header relative pt-16 items-center flex h-screen max-h-860-px ">
       <div className="container mx-auto ">
             <div className="w-full ">
               
@@ -148,7 +143,7 @@ class GuardarPropuestas extends Component {
                     htmlFor="titulo">
                     Título
                   </label>
-                  <input type="text" id="titulo"  onChange={this.handleChange} />
+                  <input type="text" id="titulo"  name="titulo"  onChange={this.handleChange} value={titulo}/>
                   {/* <input
                     value={this.state.titulo} onChange={this.handleChange} 
                     type="text"
@@ -172,8 +167,9 @@ class GuardarPropuestas extends Component {
 
                     <select
                           id="categoria"
+                          name="categoria"
                           onChange={this.handleChange}
-                          value={this.state.categoria}
+                          value={categoria}
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                           <option>Inteligencia Artificial</option>
                           <option>Diseño de Videojuegos</option>
@@ -198,6 +194,8 @@ class GuardarPropuestas extends Component {
                   <textarea
                     onChange={this.handleChange} 
                     id="descripcion"
+                    name="descripcion"
+                    value={descripcion}
                     type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                      />
@@ -217,9 +215,11 @@ class GuardarPropuestas extends Component {
                     <select
                           onChange={this.handleChange} 
                           id="estado"
+                          name="estado"
+                          value={estado}
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                          <option>Pendiente</option>
-                          <option>Activo</option> 
+                          <option value="Pendiente">Pendiente</option>
+                          <option value="Activo">Activo</option> 
                         </select>
                     </div> 
                   </div>
@@ -240,6 +240,8 @@ class GuardarPropuestas extends Component {
                     type="text"
                     onChange={this.handleChange} 
                     id="id_proponente"
+                    name="id_proponente"
+                    value={id_proponente}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                      />
                 </div>
@@ -250,7 +252,7 @@ class GuardarPropuestas extends Component {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
+                    htmlFor="image">
                     
                     PDF
                   </label>
@@ -260,7 +262,7 @@ class GuardarPropuestas extends Component {
                     type="file"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     /> */}
-                    <input  type="file" id="archivo" 
+                    <input  type="file" id="image"  name="image"
                               className="upload-file"  
                               onChange={this.handleChangeImage}
                               encType="multipart/form-data" 
@@ -286,6 +288,8 @@ class GuardarPropuestas extends Component {
                   <input
                      onChange={this.handleChange} 
                      id="organizacion"
+                     name="organizacion"
+                     value={organizacion}
                      type="text"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     />
@@ -297,12 +301,15 @@ class GuardarPropuestas extends Component {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
+                    htmlFor="link">
                     
                     Links de interes Nº
                   </label>
                   <input
-                     type="text"
+                     type="text" 
+                     id="link"
+                     name="link"
+                    value="link"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     />
                     
