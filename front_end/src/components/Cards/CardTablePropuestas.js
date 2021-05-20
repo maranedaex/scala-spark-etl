@@ -9,17 +9,17 @@ import ModalConfirmarPostulacion from "../Modals/ModalConfirmarPostulacion";
 // import TableDropdown from "components/Dropdowns/TableDropdownPropuesta.js";
 
 export default function CardTableCategorias({color}) {
-
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  const base = 'http://localhost:5000';
+  let getConf = require("config.js");
+  const conf = getConf()
+  const baseUrl = conf.backend.baseUrl
+  const [modalIsOpen, setIsOpen] = useState(false);
   const [ propuestas, setPropuestas ] = useState([]);
 
   const getPropuesta = async () => {
 
     try {
 
-      const response = await fetch(base+'/propuestas');
+      const response = await fetch(`${baseUrl}/propuestas`);
       const jsonData = await response.json();
       console.log('========>>>>>'); 
       console.log(jsonData);
