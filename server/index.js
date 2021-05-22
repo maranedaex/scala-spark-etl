@@ -20,16 +20,32 @@ app.use(express.json());
 app.post("/addpropuesta",(request, response, next) => {
 
      
-        const { idproponente, estado, descripcion, categoria} = request.body
-        console.log(`${idproponente}-${estado}-${descripcion}-${categoria}`);
+        const { id_proponente, estado, descripcion, categoria} = request.body
+        console.log(`${id_proponente}-${estado}-${descripcion}-${categoria}`);
 
-        pool.query('INSERT INTO propuesta (idproponente, estado, descripcion,categoria) VALUES ($1, $2, $3, $4)', 
-        [idproponente, estado, descripcion, categoria], 
+        pool.query('INSERT INTO propuesta (id_proponente, estado, descripcion, categoria) VALUES ($1, $2, $3, $4)', 
+        [id_proponente, estado, descripcion, categoria], 
         (err, res) => {
             if (err) return next(err);
             console.log(JSON.stringify(res.id))
             response.redirect('/propuestas');
         });
+
+});
+
+app.post("/uppropuesta",(request, response, next) => {
+
+     
+    const {id, id_proponente, estado} = request.body
+    console.log(`${id}-${id_proponente}-${estado}`);
+
+    pool.query('UPDATE propuesta SET estado = $3 where id = $1  and id_proponente = $2', 
+    [id, id_proponente, estado], 
+    (err, res) => {
+        if (err) return next(err);
+        console.log(JSON.stringify(res.id))
+        response.redirect('/propuestas');
+    });
 
 });
 
