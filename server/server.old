@@ -1,0 +1,161 @@
+const express = require("express");
+const cors = require("cors");
+var axios = require('axios');
+const bodyParser = require("body-parser");  
+
+const app = express();
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true}));
+//allow OPTIONS on all resources
+//app.options('*', cors())
+
+const port = 5000;
+const db = require("./app/models");
+db.sequelize.sync();
+
+//simple route
+app.get('/', (req, res)=>{
+    res.json({message: "Bienvenido a Conecta I+D"});
+});
+
+require("./app/routers/be.routers")(app);
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, ()=>{
+    console.log('Server esta corriendo en ${PORT}.');
+});
+
+// middleware   
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+
+app.head("/addpropuesta", cors(), (req, res) => {
+    console.info("HEAD /addpropuesta");
+    res.sendStatus(204);
+  });
+
+app.use(express.json());
+
+ // Routes
+
+app.post("/addpropuesta",  cors(), function (req, res) {
+
+    try {
+       console.log('Inicio de back-end');
+       console.info("POST /simple-cors");
+       console.log(req.body);
+       const newSite ={ 
+           id_proponente: req.body.propuestas.id_proponente, 
+           titulo: req.body.propuestas.titulo, 
+           estado: req.body.propuestas.estado,
+           descripcion: req.body.propuestas.descripcion,
+           categoria: req.body.propuestas.categoria, 
+           organizacion: req.body.propuestas.organizacion,
+           image: req.body.propuestas.image
+        };
+        console.log(newSite);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        
+       pool.query('INSERT INTO propuesta (id_proponente, titulo, estado, descripcion, categoria, organizacion, image) VALUES ($1, $2, $3, $4, $5, $6, $7)', 
+       [newSite.id_proponente, newSite.titulo,newSite.estado, newSite.descripcion, newSite.categoria, newSite.organizacion, newSite.image], 
+       (err, res) => {
+           if (err) return console.log(err);
+           console.log(JSON.stringify(res.id))
+           //res.redirect('/propuestas');
+       });
+
+        res.json(req.body);
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+});
+
+app.post("/uppropuesta",(request, response, next) => {
+
+ 
+const {id, id_proponente, estado} = request.body
+console.log(`${id}-${id_proponente}-${estado}`);
+
+pool.query('UPDATE propuesta SET estado = $3 where id = $1  and id_proponente = $2', 
+[id, id_proponente, estado], 
+(err, res) => {
+    if (err) return next(err);
+    console.log(JSON.stringify(res.id))
+    response.redirect('/propuestas');
+});
+
+});
+
+
+
+app.get("/propuestas", async(req, res) => {
+
+try{
+    const propuestas = await pool.query
+    ("SELECT * FROM propuesta");
+    res.json(propuestas.rows);
+
+} catch (err){
+    console.log(err.message);
+}
+
+});
+
+app.get("/propuesta/:Id", async(req, res) => {
+
+try{
+    const { Id } = req.params;
+
+    const propuesta = await pool.query
+    ("select * from propuesta where id_proponente = $1", [Id]);
+    res.json(propuesta.rows);
+
+} catch (err){
+    console.log(err.message);
+}
+
+});
+
+app.get("/investigadores", async(req, res) => {
+
+    try{
+        const investigadores = await pool.query
+        ("select id, nombre from investigador_guia");
+        res.json(investigadores.rows);
+
+    } catch (err){
+        console.log(err.message);
+    }
+
+});
+
+
+app.get("/investigador_guia/:Id", async(req, res) => {
+
+    try{
+        const { Id } = req.params;
+
+        const investigador = await pool.query
+        ("select * from investigador_guia where Id = $1", [Id]);
+        res.json(investigador.rows);
+
+    } catch (err){
+        console.log(err.message);
+    }
+
+});
+
+
+
+
+app.listen(port, () => {
+    console.log("Servidor iniciado en el puerto 5000")
+});
