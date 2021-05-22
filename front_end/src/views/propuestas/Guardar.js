@@ -1,10 +1,13 @@
-import React, {Fragment, useState, setState} from "react";
+import React, { Component } from "react";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
-import { Component } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
+import { Redirect } from "react-router"; 
+import swal from 'sweetalert';
  
+ 
+
+
 // components
 
 class GuardarPropuestas extends Component {
@@ -20,19 +23,76 @@ class GuardarPropuestas extends Component {
       id_proponente: '',
       image: null,
       organizacion:'',
+      email:'',
       base64: '',
       filename: '',
       filesize: '',
-      messageerror: ''
+      messageerror: '',
+      redirect: false,
+      msgsubmit: '',
+      error: null,
+      guardarErrors: {image: '', id_proponente: ''},
+      emailValid: false,
+      descripcionValid: false,
+      formValid: false
     };
     // 2: PERMISOS 
     this.handleChange = this.handleChange.bind(this);
-    this.submitHandler = this.submitHandler.bind(this);
-    this.handleChangeImage = this.handleChangeImage.bind(this);
-    
+    this.submitHandler = this.submitHandler.bind();
+    this.handleChangeImage = this.handleChangeImage.bind();
+  
   }
 
- 
+  componentWillUnmount() {
+    // fix Warning: Can't perform a React state update on an unmounted component
+    this.setState = (state,callback)=>{
+        return;
+    };
+}
+
+  handleUserInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({[name]: value},
+                  () => { this.validateField(name, value) });
+  }
+
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let emailValid = this.state.emailValid;
+    let descripcionValid = this.state.descipciondValid;
+
+    switch(fieldName) {
+      case 'email':
+        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+        break;
+      case 'descripcion':
+        descripcionValid = value.length >= 6;
+        fieldValidationErrors.descripcion = descripcionValid ? '': ' is too short';
+        break;
+      default:
+        break;
+    }
+    this.setState({formErrors: fieldValidationErrors,
+                    emailValid: emailValid,
+                    descripcionValid: descripcionValid
+                  }, this.validateForm);
+  }
+
+  validateForm() {
+    this.setState({formValid: this.state.emailValid && this.state.descripcionValid});
+  }
+
+  errorClass(error) {
+    return(error.length === 0 ? '' : 'has-error');
+  }
+
+
+   mostrarAlerta=(e)=>{
+      swal("Esta es la alerta");
+   }
+
    handleChange = (e) =>{
       this.setState({[e.target.name]:e.target.value}) 
 
@@ -41,8 +101,7 @@ class GuardarPropuestas extends Component {
   submitHandler = e => {
     e.preventDefault();
     console.log(this.state);
-    console.log('submited!!!!');
-
+  
     const headers =  {
       'Content-Type': 'multipart/form-data' 
     };
@@ -53,7 +112,9 @@ class GuardarPropuestas extends Component {
         descripcion: this.state.descripcion,
         estado: this.state.estado,
         organizacion: this.state.organizacion,
-        image: this.state.image
+        image: this.state.image,
+        email: this.state.email,
+        published: this.state.published
 
     };
     // Armando la Data para Axios
@@ -65,17 +126,24 @@ class GuardarPropuestas extends Component {
     formData.append("categoria", this.state.categoria); 
     formData.append("organizacion", this.state.organizacion);
     formData.append("image", this.state.image);
+    formData.append("email", this.state.email);
+    formData.append("published", this.state.published);
+    axios.post('http://localhost:5000/addpropuesta', { formData, headers })
+    .then(response =>{ 
+      // handle submit form success
+      console.log(response); 
+      this.setState({ redirect: true}); // ok 
+      this.setState({ msgsubmit: ''});  // ok 
 
-    axios.post('http://localhost:5000/addpropuesta', { propuestas, headers })
-    .then(response =>{
-      console.log(response);
     })
     .catch(err => {
+      // handle submit fail
       console.error({err});
+      //this.setState({error : err});
     });
  
-  }  
-
+  } ;
+  // Manejo del Upload File
   handleChangeImage = e => {
 
     console.log("Uploading...");
@@ -99,28 +167,43 @@ class GuardarPropuestas extends Component {
       reader.readAsDataURL(file);
 
       if(self.state.image!==null){
-         console.log(self.state.image);
-         self.setState({
+         
+        console.log(self.state.image);
+        
+        self.setState({
           messageerror: ""
         });
+        //this.successShow();
 
-          console.log("Uploaded");
+        console.log("Uploaded");
 
 
       }  else {
         self.setState({
           messageerror: "Disculpe!, Intente nuevamente"
         });
+         //this.handleShow();
       }   
     
   }
 
+ 
+  
+
   render(){ 
-    const { titulo, estado, categoria, id_proponente, descripcion, organizacion, image} = this.state
+    const { titulo, estado, categoria, id_proponente, descripcion, organizacion, image, email, redirect } = this.state;
+
+    if (redirect) {
+       return <Redirect to="/Listado" />;
+    }
+
+    
   return (
     <>
       <IndexNavbar fixed />
       <form onSubmit={this.submitHandler}>
+      {this.state.error != null && <p>{this.state.error}</p> }
+ 
      <section className="header relative pt-16 items-center flex h-screen max-h-860-px ">
       <div className="container mx-auto ">
             <div className="w-full ">
@@ -143,12 +226,7 @@ class GuardarPropuestas extends Component {
                     htmlFor="titulo">
                     Título
                   </label>
-                  <input type="text" id="titulo"  name="titulo"  onChange={this.handleChange} value={titulo}/>
-                  {/* <input
-                    value={this.state.titulo} onChange={this.handleChange} 
-                    type="text"
-                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                     /> */}
+                  <input type="text" id="titulo"  name="titulo"  onChange={this.handleChange} value={titulo} placeholder="Titulo"  required/>
                 </div>
               </div>
             
@@ -170,11 +248,14 @@ class GuardarPropuestas extends Component {
                           name="categoria"
                           onChange={this.handleChange}
                           value={categoria}
+                          required
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                          <option>Inteligencia Artificial</option>
-                          <option>Diseño de Videojuegos</option>
-                          <option>Desarrollo Web</option>
-                          <option>Redes y Seguridad</option>
+                          <option value="">Make a selection</option>
+                          <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+                          <option value="Diseño de Videojuegos">Diseño de Videojuegos</option>
+                          <option value="Desarrollo Web">Desarrollo Web</option>
+                          <option value="Redes y Seguridad">Redes y Seguridad</option>
+                          <option value="Redes y Seguridad">Redes y Seguridad</option>
                         </select>
                     </div> 
                   </div>
@@ -197,8 +278,10 @@ class GuardarPropuestas extends Component {
                     name="descripcion"
                     value={descripcion}
                     type="text"
+                    cols="40" rows="3"
+                    required minLength={5} maxLength={150}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                     />
+                    placeholder="Descripcion de la propuesta" />
                 </div>
               </div>
 
@@ -217,7 +300,9 @@ class GuardarPropuestas extends Component {
                           id="estado"
                           name="estado"
                           value={estado}
+                          required
                           className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                           <option value="">Make a selection</option>
                           <option value="Pendiente">Pendiente</option>
                           <option value="Activo">Activo</option> 
                         </select>
@@ -242,6 +327,8 @@ class GuardarPropuestas extends Component {
                     id="id_proponente"
                     name="id_proponente"
                     value={id_proponente}
+                    placeholder="Propopnente"
+                    required
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                      />
                 </div>
@@ -256,25 +343,17 @@ class GuardarPropuestas extends Component {
                     
                     PDF
                   </label>
-                  {/* <input
-                     onChange={this.handleChange} 
-                     id="archivo"
-                    type="file"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    /> */}
-                    <input  type="file" id="image"  name="image"
+             
+                    <input  type="file" id="image"  name="image" required
                               className="upload-file"  
                               onChange={this.handleChangeImage}
                               encType="multipart/form-data" 
                               accept="application/pdf"
-                              required/>
-                     <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password">
+                              placeholder="PDF"
+                              />
+
                     
-                    {this.state.messageerror} 
-                  </label>     
-                </div>
+                 </div>
               </div>
              
               <div className="w-full lg:w-6/12 px-4">
@@ -291,6 +370,8 @@ class GuardarPropuestas extends Component {
                      name="organizacion"
                      value={organizacion}
                      type="text"
+                     placeholder="Nombre Organizacion"
+                     required
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     />
                     
@@ -301,69 +382,49 @@ class GuardarPropuestas extends Component {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="link">
+                    htmlFor="email">
                     
-                    Links de interes Nº
+                    Email
                   </label>
                   <input
+                     onChange={this.handleChange} 
                      type="text" 
-                     id="link"
-                     name="link"
-                    value="link"
+                     id="email"
+                     name="email"
+                     value={email}
+                    placeholder="Ingrese su email"
+                    required
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    />
-                    
+                     />
+                    <br/>
+                   
+                    <br/>
                 </div>
               </div>
-              
-          
-              </div>
-
-        
-
-      
-
-          <div className="text-center flex justify-between">
-            {/* <button  
-                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="submit"
-              >
-                Guardar
-            </button> */}
-            
-            <input className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="submit" value="Submit" />
-            
-            {/* <Tooltip title="Se muestra solo a las propuestas que ya tienen asignado los investigadores" aria-label="add"> */}
-            {/* <button
-                className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="button"
-                tooltips="(cuando tenga investigadores aceptados por el guia)"
-              >
-                Cerrar 
-            </button> */}
-            {/* </Tooltip> */}
           </div>
-         
-                  
+              <div className="text-center flex justify-between">
+                    <input className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        type="submit" value="Submit" />
+                    </div>
                 </div>
-
-              
               </div>
               <div className="text-center mt-16"></div>
             </div>
         </div>
       </section>
+       
 
-
-
+ 
 
       
 
       </form>
+      
+
       <Footer />
+
     </>
   )};
-}
 
+}
 export default GuardarPropuestas;

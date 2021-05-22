@@ -20,7 +20,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.conectaid = require("./be.models.js")(sequelize, Sequelize);
+db.propuestas = require("./propuesta.models.js")(sequelize, Sequelize);
 
 module.exports = db;
 

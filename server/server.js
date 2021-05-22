@@ -11,33 +11,24 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
-//app.use(bodyParser.json());
-
-// app.use(bodyParser.json({
-//     parameterLimit: 100000,
-//     limit: '50mb'
-//   }))
-
-//app.use(compression());
+app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Tell the bodyparser middleware to accept more data
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-
 const db = require("./app/models");
-
 db.sequelize.sync();
+// // drop the table if it already exists
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and re-sync db.");
+// });
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to me application." });
+  res.json({ message: "Welcome to bezkoder application." });
 });
 
- 
-require("./app/routers/be.routers")(app);
+require("./app/routers/propuesta.routers")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 5000;
