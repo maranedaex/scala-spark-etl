@@ -4,7 +4,7 @@ module.exports = app => {
   var router = require("express").Router();
 
   // Create a new Propuestas
-  router.post("/", propuestas.create);
+  router.post("/add", propuestas.create);
 
   // Retrieve all Propuestas
   router.get("/", propuestas.findAll);

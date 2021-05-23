@@ -24,6 +24,7 @@ class GuardarPropuestas extends Component {
       image: null,
       organizacion:'',
       email:'',
+      published: false,
       base64: '',
       filename: '',
       filesize: '',
@@ -105,20 +106,20 @@ class GuardarPropuestas extends Component {
     const headers =  {
       'Content-Type': 'multipart/form-data' 
     };
-    const propuestas = {
-        id_proponente : this.state.id_proponente,
-        titulo: this.state.titulo,
-        categoria: this.state.categoria,
-        descripcion: this.state.descripcion,
-        estado: this.state.estado,
-        organizacion: this.state.organizacion,
-        image: this.state.image,
-        email: this.state.email,
-        published: this.state.published
+    const propuesta = {
+      id_proponente : this.state.id_proponente,
+      titulo: this.state.titulo,
+      categoria: this.state.categoria,
+      descripcion: this.state.descripcion,
+      estado: this.state.estado,
+      organizacion: this.state.organizacion,
+      image: this.state.image,
+      email: this.state.email,
+      published: this.state.published
 
-    };
+  };
     // Armando la Data para Axios
-    var formData = new FormData(); 
+    const formData = new FormData(); 
     formData.append("titulo", this.state.titulo);
     formData.append("estado", this.state.estado);
     formData.append("id_proponente", this.state.id_proponente);
@@ -128,7 +129,8 @@ class GuardarPropuestas extends Component {
     formData.append("image", this.state.image);
     formData.append("email", this.state.email);
     formData.append("published", this.state.published);
-    axios.post('http://localhost:5000/addpropuesta', { formData, headers })
+
+    axios.post('http://localhost:5000/api/propuestas/add', { propuesta, headers })
     .then(response =>{ 
       // handle submit form success
       console.log(response); 

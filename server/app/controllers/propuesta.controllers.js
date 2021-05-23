@@ -5,7 +5,9 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Propuesta
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.titulo) {
+  console.log('Inicio del insert');
+  //console.log(req.body);
+  if (!req.body.propuesta.titulo) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -14,15 +16,15 @@ exports.create = (req, res) => {
 
   // Create a Propuesta
   const propuesta = {
-    titulo: req.body.titulo,
-    descripcion: req.body.descripcion,
-    id_proponente: req.body.id_proponente, 
-    estado: req.body.estado,
-    categoria: req.body.categoria, 
-    organizacion: req.body.organizacion,
-    image: req.body.image,
-    email: req.body.email,
-    published: req.body.published ? req.body.published : false
+    titulo: req.body.propuesta.titulo,
+    descripcion: req.body.propuesta.descripcion,
+    id_proponente: req.body.propuesta.id_proponente, 
+    estado: req.body.propuesta.estado,
+    categoria: req.body.propuesta.categoria, 
+    organizacion: req.body.propuesta.organizacion,
+    image: req.body.propuesta.image,
+    email: req.body.propuesta.email,
+    published: req.body.propuesta.published ? req.body.propuesta.published : false
   };
 
   // Save Propuesta in the database

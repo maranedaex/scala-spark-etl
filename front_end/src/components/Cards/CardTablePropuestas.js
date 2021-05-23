@@ -19,7 +19,7 @@ export default function CardTableCategorias({color}) {
 
     try {
 
-      const response = await fetch(base+'/propuestas');
+      const response = await fetch(base+'/api/propuestas');
       const jsonData = await response.json();
       console.log(jsonData);
       
@@ -140,7 +140,7 @@ export default function CardTableCategorias({color}) {
                       +(color === "light" ? "text-blueGray-600" : "text-white")
                     }
                   >
-                   {propuesta.descripcion}
+                   {propuesta.titulo}
                   </span>
               </th>
               <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left ">

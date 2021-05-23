@@ -4,7 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=development nodemon server.js",
+    "start-staging": "NODE_ENV=staging nodemon server.js",
+    "start-docker": "NODE_ENV=docker nodemon server.js"
   },
   "keywords": [
     "nodejs",
