@@ -2,28 +2,30 @@ import React,{useEffect, useState}  from "react";
 import PropTypes from "prop-types";
 
 import {Link} from "react-router-dom";
-import Modal from 'react-modal';
 
 // components
 import ModalConfirmarPostulacion from "../Modals/ModalConfirmarPostulacion";
 // import TableDropdown from "components/Dropdowns/TableDropdownPropuesta.js";
 
 export default function CardTableCategorias({color}) {
-
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  const base = 'http://localhost:5000';
+  //let getConf = require("config.js");
+  //const conf = getConf()
+  const conf = require("config.js")();
+  const baseUrl = conf.backend.baseUrl
+  //const [modalIsOpen, setIsOpen] = useState(false);
   const [ propuestas, setPropuestas ] = useState([]);
-
+  const [modalStatuses, setModalStatuses] = useState([]);
   const getPropuesta = async () => {
 
     try {
 
-      const response = await fetch(base+'/api/propuestas');
+      const response = await fetch(`${baseUrl}/propuestas`);
       const jsonData = await response.json();
+      console.log('========>>>>>'); 
       console.log(jsonData);
       
       setPropuestas(jsonData);
+      setModalStatuses(new Array(jsonData.length).fill(false))
     } catch (err) {
      //console.log(err);
     }
@@ -161,7 +163,24 @@ export default function CardTableCategorias({color}) {
                 >
                   Postular
                 </Link>
+                <button onClick={(e) => {
+                  setModalStatuses([].concat(
+                    // false values from zero to index - 1
+                    new Array(index).fill(false),
+                    [true],
+                    new Array(propuestas.length - index - 1).fill(false)
+                  ));
+                }}>Postular
+                </button>
 
+                <ModalConfirmarPostulacion
+                  onClose = {() => setModalStatuses(new Array(propuestas.length).fill(false))}
+                  modalIsOpen = {modalStatuses[index]}
+                  tituloPropuesta = {propuesta.titulo}
+                  idPropuesta = {propuesta.id}
+                  idInvestigador = {1}
+                >
+                </ModalConfirmarPostulacion>
 
               </td>
             </tr>
