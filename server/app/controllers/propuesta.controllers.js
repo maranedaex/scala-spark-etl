@@ -5,7 +5,6 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Propuesta
 exports.create = (req, res) => {
   // Validate request
-  console.log('Inicio del insert');
   //console.log(req.body);
   if (!req.body.propuesta.titulo) {
     res.status(400).send({

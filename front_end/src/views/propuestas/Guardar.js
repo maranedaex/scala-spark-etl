@@ -404,10 +404,13 @@ class GuardarPropuestas extends Component {
                 </div>
               </div>
           </div>
-              <div className="text-center flex justify-between">
-                    <input className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                        type="submit" value="Submit" />
+                    <div className="text-center flex justify-between">
+                         <input className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                           type="submit" value="Submit" /> 
+                           <input className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                           type="button" value="Volver"  onPress={() => this.props.navigation.goBack()} />
                     </div>
+                    
                 </div>
               </div>
               <div className="text-center mt-16"></div>

@@ -1,17 +1,18 @@
 import React,{useEffect, useState}  from "react";
 import PropTypes from "prop-types";
-
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Pagination from "@material-ui/lab/Pagination";
 
 // components
 import ModalConfirmarPostulacion from "../Modals/ModalConfirmarPostulacion";
-// import TableDropdown from "components/Dropdowns/TableDropdownPropuesta.js";
+ 
 
 export default function CardTableCategorias({color}) {
-  //let getConf = require("config.js");
-  //const conf = getConf()
+  
+  console.log(color);
   const conf = require("config.js")();
-  const baseUrl = conf.backend.baseUrl
+  //const baseUrl = conf.backend.baseUrl
+  const baseUrl = 'http://localhost:5000';
   //const [modalIsOpen, setIsOpen] = useState(false);
   const [ propuestas, setPropuestas ] = useState([]);
   const [modalStatuses, setModalStatuses] = useState([]);
@@ -19,9 +20,8 @@ export default function CardTableCategorias({color}) {
 
     try {
 
-      const response = await fetch(`${baseUrl}/propuestas`);
+      const response = await fetch(`${baseUrl}/api/propuestas`);
       const jsonData = await response.json();
-      console.log('========>>>>>'); 
       console.log(jsonData);
       
       setPropuestas(jsonData);
