@@ -32,16 +32,16 @@ $ ./bin/spark-submit Challenge-spark.jar
 ## Result from TopGames provided 
 
 === The 10 best games for each console/company. of SONY ===
-+-------+-------+--------------+
-|company|console|max(metascore)|
-+-------+-------+--------------+
-|   SONY|    PS4|            97|
-|   SONY|    PS3|            98|
-|   SONY|    PS2|            97|
-|   SONY|    PSP|            91|
-|   SONY|   VITA|            93|
-|   SONY|     PS|            98|
-+-------+-------+--------------+
++-------+-------+--------------+. 
+|company|console|max(metascore)| 
++-------+-------+--------------+. 
+|   SONY|    PS4|            97|. 
+|   SONY|    PS3|            98| 
+|   SONY|    PS2|            97| 
+|   SONY|    PSP|            91| 
+|   SONY|   VITA|            93| 
+|   SONY|     PS|            98| 
++-------+-------+--------------+ 
 
 === The 10 best games for each console/company. of MICROSOFT ===
 +---------+-------+--------------+
